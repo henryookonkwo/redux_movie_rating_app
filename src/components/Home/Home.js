@@ -8,6 +8,7 @@ import { addMovies } from "../../features/movies/moviesSlice";
 const Home = () => {
   const movieText = "Harry";
   const dispatch = useDispatch();
+
   useEffect(() => {
     const fetchMovies = async () => {
       const response = await movieApi
