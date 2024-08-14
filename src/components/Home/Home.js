@@ -4,6 +4,8 @@ import MovieListing from "../MovieListing/MovieListing";
 import { useDispatch } from "react-redux";
 import {
   fetchAsyncMovies,
+  fetchAsyncShows,
+  fetchAsyncMovieOrShowDetail,
   // selectMovies,
   // selectStatus,
 } from "../../features/movies/moviesSlice";
@@ -13,7 +15,8 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchAsyncMovies());
-    console.log(fetchAsyncMovies);
+    dispatch(fetchAsyncShows());
+    dispatch(fetchAsyncMovieOrShowDetail());
   }, [dispatch]);
   return (
     <div>
