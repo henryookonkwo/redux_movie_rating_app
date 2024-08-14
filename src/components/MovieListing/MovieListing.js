@@ -1,11 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getAllMovies, getAllShows } from "../../features/movies/moviesSlice";
+import { selectMovies, getAllShows } from "../../features/movies/moviesSlice";
 import MovieCard from "../MovieCard/MovieCard";
 import "./MovieListing.scss";
 
 const MovieListing = () => {
-  const movies = useSelector(getAllMovies);
+  const movies = useSelector(selectMovies);
   const shows = useSelector(getAllShows);
   let renderMovies,
     renderShows = "";
