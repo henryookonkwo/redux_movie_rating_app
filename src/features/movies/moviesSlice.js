@@ -5,7 +5,7 @@ import { APIKey } from "../../common/apis/MovieApiKey";
 export const fetchAsyncMovies = createAsyncThunk(
   "movies/fetchAsyncMovies",
   async () => {
-    const movieText = "Christmas";
+    const movieText = "Harry";
     const response = await movieApi.get(
       `?apiKey=${APIKey}&s=${movieText}&type=movie`
     );
@@ -35,7 +35,6 @@ export const fetchAsyncMovieOrShowDetail = createAsyncThunk(
 const initialState = {
   movies: {},
   shows: {},
-  //   status: null,
   selectMovieOrShow: {},
 };
 
@@ -52,31 +51,28 @@ const movieSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAsyncMovies.pending, (state) => {
+      .addCase(fetchAsyncMovies.pending, () => {
         console.log("Pending");
       })
       .addCase(fetchAsyncMovies.fulfilled, (state, { payload }) => {
-        console.log("Fetched Successfully!");
-        // state.movies = payload;
-        return { ...state, movies: payload };
+        console.log("Movies Fetched Successfully!");
+        state.movies = payload; //immer.js allows us to update state in this manner
+        // return { ...state, movies: payload };
       })
       .addCase(fetchAsyncMovies.rejected, (state) => {
         console.log("Rejected!");
       })
 
       .addCase(fetchAsyncShows.fulfilled, (state, { payload }) => {
-        console.log("Fetched Successfully!");
-        return { ...state, shows: payload };
-      })
-      .addCase(fetchAsyncMovieOrShowDetail.fulfilled, (state, { payload }) => {
-        console.log("Fetched Successfully!");
-        return { ...state, selectMovieOrShow: payload };
+        console.log("Shows Fetched Successfully!");
+        state.shows = payload;
+        // return { ...state, shows: payload };
       });
   },
 });
 
 export const { removeSelectedMovieOrShow } = movieSlice.actions;
-export const selectMovies = (state) => state.movies.movies;
+export const getAllMovies = (state) => state.movies.movies;
 export const getAllShows = (state) => state.movies.shows;
 export const getSelectedMovieOrShow = (state) => state.movies.selectMovieOrShow;
 export default movieSlice.reducer;
