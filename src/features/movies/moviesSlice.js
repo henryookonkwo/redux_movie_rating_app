@@ -42,9 +42,6 @@ const movieSlice = createSlice({
   name: "movies",
   initialState,
   reducers: {
-    addMovies: (state, { payload }) => {
-      state.movies = payload;
-    },
     removeSelectedMovieOrShow: (state) => {
       state.selectMovieOrShow = {};
     },
