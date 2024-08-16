@@ -6,8 +6,6 @@ import {
   fetchAsyncMovies,
   fetchAsyncShows,
   fetchAsyncMovieOrShowDetail,
-  // selectMovies,
-  // selectStatus,
 } from "../../features/movies/moviesSlice";
 
 const Home = () => {
